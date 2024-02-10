@@ -22,16 +22,28 @@ npm install
 ## Использование
 
 1. **Изменение профиля:** В разделе профиля пользователь может изменить свои данные, такие как имя и информацию о себе, а также загрузить новое фото профиля.
-
-![Пример изменения профиля](gif/editprofile.gif)
+<div align="center">
+  <img src="gif/editprofile.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
+</div>
+<div align="center" id="loader" style="display: none;">
+  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+</div>
 
 2. **Добавление нового места:** На главной странице пользователь может добавить новое место, указав название места и ссылку на фотографию.
-
-![Пример добавления нового места](gif/newplace.gif)
+<div align="center">
+  <img src="gif/newplace.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
+</div>
+<div align="center" id="loader" style="display: none;">
+  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+</div>
 
 3. **Лайки:** Пользователь может оценить фотографию другого пользователя, нажав на кнопку "Лайк".
-
-![Пример лайка фото](gif/zoomlike.gif)
+<div align="center">
+  <img src="gif/zoomlike.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
+</div>
+<div align="center" id="loader" style="display: none;">
+  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+</div>
 
 ## Доступ
 
