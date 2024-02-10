@@ -4,20 +4,7 @@
 
 ## Установка
 
-Для запуска проекта на локальной машине выполните следующие шаги:
-
-1. Клонируйте репозиторий на свой компьютер:
-```bash
-git clone https://github.com/your_username/mesto-project.git
-```
-2. Перейдите в директорию проекта:
-```bash
-cd mesto-project
-```
-3. Установите зависимости:
-```bash
-npm install
-```
+Веб-приложение доступно по [адресу](https://astra463.github.io/mesto-project-ff/)(кликабельно)
 
 ## Использование
 
@@ -39,21 +26,18 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 1. **Изменение профиля:** В разделе профиля пользователь может изменить свои данные, такие как имя и информацию о себе, а также загрузить новое фото профиля.
-<div id="image-container" style="text-align:center;">
-  <img src="gif/editprofile.gif" alt="Пример изменения профиля" style="display:none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
+<div align="center">
+  <img src="gif/editprofile.gif" alt="Пример изменения профиля">
 </div>
 
 2. **Добавление нового места:** На главной странице пользователь может добавить новое место, указав название места и ссылку на фотографию.
-<div id="image-container" style="text-align:center;">
-  <img src="gif/newplace.gif" alt="Пример изменения профиля" style="display:none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
+<div align="center">
+  <img src="gif/newplace.gif" alt="Пример изменения профиля">
 </div>
 
 3. **Лайки:** Пользователь может оценить фотографию другого пользователя, нажав на кнопку "Лайк".
-<div id="image-container" style="text-align:center;">
-  <img src="gif/likes.gif" alt="Пример изменения профиля" style="display:none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
+<div align="center">
+  <img src="gif/zoomlike.gif" alt="Пример изменения профиля">
 </div>
 
 ## Доступ
