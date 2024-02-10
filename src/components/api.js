@@ -13,6 +13,7 @@ const config = {
   },
 };
 
+// Запрос данных профиля и карточек
 const getInitialData = () => {
   const getProfileData = () => {
     return fetch(`${config.baseUrl}/users/me`, {

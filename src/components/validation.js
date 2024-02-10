@@ -17,7 +17,8 @@ const hideInputError = (popupForm, popupInput) => {
 };
 
 const isValid = (popupForm, popupInput) => {
-  const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
+  // Только латинские и кириллические буквы, знаки дефиса и пробелы
+  const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/; 
 
   if (!(popupInput.type === "url")) {
     if (!regex.test(popupInput.value)) {
