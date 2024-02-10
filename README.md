@@ -2,28 +2,9 @@
 
 Проект "Mesto" - это веб-приложение, которое позволяет пользователям делиться фотографиями своих любимых мест. Пользователи могут загружать изображения мест, которые они посетили или которые им нравятся, и просматривать фотографии других пользователей. Каждая фотография может быть оценена другими пользователями путем добавления лайка. У каждого пользователя есть свой профиль, где они могут изменить свои данные и загрузить собственное фото профиля.
 
-## Установка
-
-Веб-приложение доступно по [адресу](https://astra463.github.io/mesto-project-ff/)(кликабельно)
-
 ## Использование
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  var image = document.querySelector("#image-container img");
-  var loader = document.querySelector("#loader");
-
-  image.onload = function() {
-    loader.style.display = "none";
-    image.style.display = "block";
-  };
-
-  image.onerror = function() {
-    loader.style.display = "none";
-    image.style.display = "none";
-  };
-});
-</script>
+Веб-приложение доступно по [адресу](https://astra463.github.io/mesto-project-ff/)(кликабельно)
 
 1. **Изменение профиля:** В разделе профиля пользователь может изменить свои данные, такие как имя и информацию о себе, а также загрузить новое фото профиля.
 <div align="center">
