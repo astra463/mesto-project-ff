@@ -26,7 +26,7 @@ npm install
   <img src="gif/editprofile.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
 </div>
 <div align="center" id="loader" style="display: none;">
-  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
 </div>
 
 2. **Добавление нового места:** На главной странице пользователь может добавить новое место, указав название места и ссылку на фотографию.
@@ -34,7 +34,7 @@ npm install
   <img src="gif/newplace.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
 </div>
 <div align="center" id="loader" style="display: none;">
-  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
 </div>
 
 3. **Лайки:** Пользователь может оценить фотографию другого пользователя, нажав на кнопку "Лайк".
@@ -42,7 +42,7 @@ npm install
   <img src="gif/zoomlike.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
 </div>
 <div align="center" id="loader" style="display: none;">
-  <img src="loader.gif" alt="Идет загрузка..." width="50" height="50">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
 </div>
 
 ## Доступ
