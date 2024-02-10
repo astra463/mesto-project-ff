@@ -10,7 +10,7 @@
   margin-bottom: 10px;
 }
 
-.popup__input:last-of-type {
+.popup__input {
   margin-bottom: 0;
 }
 
@@ -20,3 +20,22 @@
     line-height: 15px;
   }
 }
+
+.form__input-error {
+  display: block;
+  position: absolute;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  width: 80%;
+}
+
+.form__input_type_error {
+  border-bottom-color: red;
+} 
+
+.form__input-error_active {
+  opacity: 100%;
+} 
