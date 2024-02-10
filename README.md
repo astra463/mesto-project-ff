@@ -21,28 +21,39 @@ npm install
 
 ## Использование
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var image = document.querySelector("#image-container img");
+  var loader = document.querySelector("#loader");
+
+  image.onload = function() {
+    loader.style.display = "none";
+    image.style.display = "block";
+  };
+
+  image.onerror = function() {
+    loader.style.display = "none";
+    image.style.display = "none";
+  };
+});
+</script>
+
 1. **Изменение профиля:** В разделе профиля пользователь может изменить свои данные, такие как имя и информацию о себе, а также загрузить новое фото профиля.
-<div align="center">
-  <img src="gif/editprofile.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
-</div>
-<div align="center" id="loader" style="display: none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
+<div id="image-container" style="text-align:center;">
+  <img src="gif/editprofile.gif" alt="Пример изменения профиля" style="display:none;">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
 </div>
 
 2. **Добавление нового места:** На главной странице пользователь может добавить новое место, указав название места и ссылку на фотографию.
-<div align="center">
-  <img src="gif/newplace.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
-</div>
-<div align="center" id="loader" style="display: none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
+<div id="image-container" style="text-align:center;">
+  <img src="gif/newplace.gif" alt="Пример изменения профиля" style="display:none;">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
 </div>
 
 3. **Лайки:** Пользователь может оценить фотографию другого пользователя, нажав на кнопку "Лайк".
-<div align="center">
-  <img src="gif/zoomlike.gif" alt="Пример изменения профиля" onerror="this.style.display='none'; document.getElementById('loader').style.display='block';">
-</div>
-<div align="center" id="loader" style="display: none;">
-  <img src="gif/spinner.gif" alt="Идет загрузка..." width="50" height="50">
+<div id="image-container" style="text-align:center;">
+  <img src="gif/likes.gif" alt="Пример изменения профиля" style="display:none;">
+  <img src="gif/spinner.gif" alt="Идет загрузка..." width="100" height="100" id="loader">
 </div>
 
 ## Доступ
