@@ -1,10 +1,3 @@
-export {
-  getInitialData,
-  updateProfileDataRequest,
-  updateAvatarRequest,
-  newCardRequest,
-};
-
 const config = {
   baseUrl: "https://nomoreparties.co/v1/wff-cohort-6",
   headers: {
@@ -18,39 +11,13 @@ const getInitialData = () => {
   const getProfileData = () => {
     return fetch(`${config.baseUrl}/users/me`, {
       headers: config.headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((result) => {
-        return {
-          name: result.name,
-          about: result.about,
-          avatar: result.avatar,
-        };
-      })
-      .catch((err) =>
-        console.error(`Ошибка при загрузке данных профиля. ${err}`)
-      );
+    }).then((res) => isRequestSuccess(res));
   };
 
   const getCards = () => {
     return fetch(`${config.baseUrl}/cards`, {
       headers: config.headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((data) => {
-        return data;
-      })
-      .catch((err) => 
-      console.error(`Ошибка при загрузке карточек. ${err}`)
-      )
+    }).then((res) => isRequestSuccess(res));
   };
 
   return Promise.all([getProfileData(), getCards()]);
@@ -64,7 +31,7 @@ const updateProfileDataRequest = (newName, newJob) => {
       name: newName,
       about: newJob,
     }),
-  });
+  }).then((res) => isRequestSuccess(res));
 };
 
 const updateAvatarRequest = (avatarLink) => {
@@ -74,16 +41,7 @@ const updateAvatarRequest = (avatarLink) => {
     body: JSON.stringify({
       avatar: avatarLink,
     }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        console.error("Не удалось обновить аватар");
-      }
-      return res.json();
-    })
-    .catch((error) => {
-      console.error("Ошибка при обновлении аватара.", error);
-    });
+  }).then((res) => isRequestSuccess(res));
 };
 
 const newCardRequest = (placeName, imageLink) => {
@@ -94,5 +52,42 @@ const newCardRequest = (placeName, imageLink) => {
       name: placeName,
       link: imageLink,
     }),
-  });
+  }).then((res) => isRequestSuccess(res));
+};
+
+const deleteCardRequest = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then((res) => isRequestSuccess(res));
+};
+
+const putLikeRequest = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: "PUT",
+    headers: config.headers,
+  }).then((res) => isRequestSuccess(res));
+};
+
+const deleteLikeRequest = (cardId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then((res) => isRequestSuccess(res));
+};
+
+const isRequestSuccess = (res) => {
+  if (res.ok) {
+    return res.json();
+  } else return Promise.reject(`Ошибка: ${res.status}`);
+};
+
+export {
+  getInitialData,
+  updateProfileDataRequest,
+  updateAvatarRequest,
+  newCardRequest,
+  deleteCardRequest,
+  putLikeRequest,
+  deleteLikeRequest,
 };

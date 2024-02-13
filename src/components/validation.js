@@ -1,24 +1,31 @@
-export {clearValidation, enableValidation};
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_inactive",
+  inputErrorClass: "form__input_type_error",
+  inputErrorActiveClass: "form__input-error_active",
+};
 
 const showInputError = (popupForm, popupInput, errorMessage) => {
   const errorElement = popupForm.querySelector(`.${popupInput.id}-error`);
 
-  popupInput.classList.add("form__input_type_error");
+  popupInput.classList.add(validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
+  errorElement.classList.add(validationConfig.inputErrorActiveClass);
 };
 
 const hideInputError = (popupForm, popupInput) => {
   const errorElement = popupForm.querySelector(`.${popupInput.id}-error`);
 
-  popupInput.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__input-error_active");
+  popupInput.classList.remove(validationConfig.inputErrorClass);
+  errorElement.classList.remove(validationConfig.inputErrorActiveClass);
   errorElement.textContent = "";
 };
 
 const isValid = (popupForm, popupInput) => {
   // Только латинские и кириллические буквы, знаки дефиса и пробелы
-  const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/; 
+  const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
 
   if (!(popupInput.type === "url")) {
     if (!regex.test(popupInput.value)) {
@@ -39,8 +46,12 @@ const isValid = (popupForm, popupInput) => {
 };
 
 const setEventListeners = (popupForm) => {
-  const inputList = Array.from(popupForm.querySelectorAll(".popup__input"));
-  const buttonElement = popupForm.querySelector(".popup__button");
+  const inputList = Array.from(
+    popupForm.querySelectorAll(validationConfig.inputSelector)
+  );
+  const buttonElement = popupForm.querySelector(
+    validationConfig.submitButtonSelector
+  );
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -69,10 +80,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
-    buttonElement.classList.add("popup__button_inactive");
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
   } else {
     buttonElement.disabled = false;
-    buttonElement.classList.remove("popup__button_inactive");
+    buttonElement.classList.remove(validationConfig.inactiveButtonClass);
   }
 };
 
@@ -87,8 +98,10 @@ const clearValidation = (popupForm, validationConfig) => {
   inputList.forEach((inputElement) => {
     inputElement.setCustomValidity(""); // Сброс кастомного сообщения об ошибке
     hideInputError(popupForm, inputElement); // Очистка стилей ошибки
-    inputElement.value = '';
+    inputElement.value = "";
   });
 
   toggleButtonState(inputList, buttonElement); // Обновление состояния кнопки
 };
+
+export { clearValidation, enableValidation, validationConfig };
