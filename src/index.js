@@ -165,6 +165,7 @@ const handleDeleteCardSubmit = () => {
     .finally(() => renderLoading(false, cardDeleteSubmitionButton));
 };
 
+// Назначение слушателя на кнопку подтверждения удаления карточки
 cardDeleteSubmitionButton.addEventListener("click", handleDeleteCardSubmit);
 
 // Проверка URL на наличие изображения
