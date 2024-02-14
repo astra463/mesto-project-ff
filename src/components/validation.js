@@ -1,13 +1,9 @@
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_inactive",
-  inputErrorClass: "form__input_type_error",
-  inputErrorActiveClass: "form__input-error_active",
-};
-
-const showInputError = (popupForm, popupInput, errorMessage) => {
+const showInputError = (
+  validationConfig,
+  popupForm,
+  popupInput,
+  errorMessage
+) => {
   const errorElement = popupForm.querySelector(`.${popupInput.id}-error`);
 
   popupInput.classList.add(validationConfig.inputErrorClass);
@@ -15,7 +11,7 @@ const showInputError = (popupForm, popupInput, errorMessage) => {
   errorElement.classList.add(validationConfig.inputErrorActiveClass);
 };
 
-const hideInputError = (popupForm, popupInput) => {
+const hideInputError = (validationConfig, popupForm, popupInput) => {
   const errorElement = popupForm.querySelector(`.${popupInput.id}-error`);
 
   popupInput.classList.remove(validationConfig.inputErrorClass);
@@ -23,7 +19,7 @@ const hideInputError = (popupForm, popupInput) => {
   errorElement.textContent = "";
 };
 
-const isValid = (popupForm, popupInput) => {
+const isValid = (validationConfig, popupForm, popupInput) => {
   // Только латинские и кириллические буквы, знаки дефиса и пробелы
   const regex = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
 
@@ -36,16 +32,26 @@ const isValid = (popupForm, popupInput) => {
   }
   if (!popupInput.validity.valid) {
     if (popupInput.validity.valueMissing) {
-      showInputError(popupForm, popupInput, "Поле не может быть пустым");
+      showInputError(
+        validationConfig,
+        popupForm,
+        popupInput,
+        "Поле не может быть пустым"
+      );
     } else {
-      showInputError(popupForm, popupInput, popupInput.validationMessage);
+      showInputError(
+        validationConfig,
+        popupForm,
+        popupInput,
+        popupInput.validationMessage
+      );
     }
   } else {
-    hideInputError(popupForm, popupInput);
+    hideInputError(validationConfig, popupForm, popupInput);
   }
 };
 
-const setEventListeners = (popupForm) => {
+const setEventListeners = (validationConfig, popupForm) => {
   const inputList = Array.from(
     popupForm.querySelectorAll(validationConfig.inputSelector)
   );
@@ -55,8 +61,8 @@ const setEventListeners = (popupForm) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      isValid(popupForm, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      isValid(validationConfig, popupForm, inputElement);
+      toggleButtonState(validationConfig, inputList, buttonElement);
     });
   });
 };
@@ -67,7 +73,7 @@ const enableValidation = (validationConfig) => {
   );
 
   formList.forEach((formElement) => {
-    setEventListeners(formElement);
+    setEventListeners(validationConfig, formElement);
   });
 };
 
@@ -77,7 +83,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (validationConfig, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
     buttonElement.classList.add(validationConfig.inactiveButtonClass);
@@ -97,11 +103,11 @@ const clearValidation = (popupForm, validationConfig) => {
 
   inputList.forEach((inputElement) => {
     inputElement.setCustomValidity(""); // Сброс кастомного сообщения об ошибке
-    hideInputError(popupForm, inputElement); // Очистка стилей ошибки
+    hideInputError(validationConfig, popupForm, inputElement); // Очистка стилей ошибки
     inputElement.value = "";
   });
 
-  toggleButtonState(inputList, buttonElement); // Обновление состояния кнопки
+  toggleButtonState(validationConfig, inputList, buttonElement); // Обновление состояния кнопки
 };
 
-export { clearValidation, enableValidation, validationConfig };
+export { clearValidation, enableValidation };

@@ -1,11 +1,7 @@
 import "/src/index.css"; // добавьте импорт главного файла стилей
 import { openModal, closeModal } from "./components/modal.js";
 import { createCard, likeCard } from "./components/card.js";
-import {
-  clearValidation,
-  enableValidation,
-  validationConfig,
-} from "./components/validation.js";
+import { clearValidation, enableValidation } from "./components/validation.js";
 import {
   getInitialData,
   updateProfileDataRequest,
@@ -24,7 +20,6 @@ const closeButton = document.querySelectorAll(".popup__close"); // Собира�
 const profileTitle = document.querySelector(".profile__title"); // Имя владельца профиля
 const profileDescription = document.querySelector(".profile__description"); // Описание рода деятельности владельца профиля
 const profileImage = document.querySelector(".profile__image"); // Аватар владельца профиля
-
 const editProfileForm = document.querySelector('form[name="edit-profile"]'); // Форма редактирования данных профиля
 const submitProfileButton = editProfileForm.querySelector(".button"); // Кнопка подтверждения редактирования данных профиля
 const nameInput = editProfileForm.querySelector(".popup__input_type_name"); // Поле ввода имени владельца профиля
@@ -33,8 +28,17 @@ const jobInput = editProfileForm.querySelector(
 ); // Поле ввода рода деятельности владельца профиля
 
 const cardsContainer = document.querySelector(".places__list");
-let cardIdToDelete = '';
+let cardIdToDelete = "";
 let cardToDelete = {};
+
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_inactive",
+  inputErrorClass: "form__input_type_error",
+  inputErrorActiveClass: "form__input-error_active",
+};
 
 const newPlaceForm = document.querySelector('form[name="new-place"]'); // Форма добавления новой карточки
 const submitNewPlaceButton = newPlaceForm.querySelector(".popup__button"); // Кнопка подтверждения добавления новой карточки
@@ -44,7 +48,8 @@ const avatarInput = avatarUpdateForm.querySelector(".popup__input_type_url"); //
 const placeName = document.forms["new-place"].elements["place-name"]; // Поле ввода названия карточки
 const imageLink = document.forms["new-place"].elements["link"]; // Поле ввода ссылки на картинку карточки
 const popupDelete = document.querySelector(".popup_type_delete");
-const cardDeleteSubmitionButton = popupDelete.querySelector('.popup__button-delete-submition');
+const cardDeleteSubmitionButton = popupDelete.querySelector(".popup__button");
+console.log(cardDeleteSubmitionButton);
 
 const popupZoomImage = document.querySelector(".popup_type_image"); // Попап зума карточки
 const popupImage = popupZoomImage.querySelector(".popup__image"); // Картинка в попапе карточки
@@ -142,7 +147,6 @@ function handleNewPlaceSubmit(evt) {
 // Хендлер нажатия на кнопку удаления карточки
 const handleDeleteCardButtonClick = (card, cardId) => {
   openModal(popupDelete);
-  cardDeleteSubmitionButton.addEventListener("click", handleDeleteCardSubmit);
   cardIdToDelete = cardId;
   cardToDelete = card;
 };
@@ -152,15 +156,17 @@ const handleDeleteCardSubmit = () => {
   renderLoading(true, cardDeleteSubmitionButton);
   deleteCardRequest(cardIdToDelete)
     .then(() => {
-      cardToDelete.remove()
-      cardDeleteSubmitionButton.removeEventListener("click", handleDeleteCardSubmit);
+      cardToDelete.remove();
       closeModal(popupDelete);
     })
     .catch((err) => {
       console.error("Ошибка при удалении карточки.", err);
     })
-    .finally(() => renderLoading(false, cardDeleteSubmitionButton))
+    .finally(() => renderLoading(false, cardDeleteSubmitionButton));
 };
+
+cardDeleteSubmitionButton.addEventListener("click", handleDeleteCardSubmit);
+
 // Проверка URL на наличие изображения
 function checkIfImage(url) {
   return new Promise((resolve) => {
